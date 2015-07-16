@@ -4,7 +4,8 @@
 
 	<!-- default companion link when SYS_COMPANION == 921600 -->
 	<arg name="fcu_url" default="/dev/ttyAMA0:921600" />
-	<arg name="gcs_url" default="udp://@robert" />
+	<!-- default - wait remote connection -->
+	<arg name="gcs_url" default="udp://@" />
 	<arg name="tgt_system" default="1" />
 	<arg name="tgt_component" default="1" />
 
