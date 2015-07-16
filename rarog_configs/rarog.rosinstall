@@ -1,0 +1,2 @@
+- git: {local-name: rarog, uri: 'https://github.com/vooon/rarog.git'}
+- git: {local-name: mavros, uri: 'https://github.com/mavlink/mavros.git'}
