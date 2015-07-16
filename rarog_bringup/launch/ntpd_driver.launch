@@ -1,0 +1,9 @@
+<launch>
+	<!-- vim: ft=xml -->
+	<!-- ntpd_driver launch, time source is mavros -->
+
+	<node pkg="ntpd_driver" type="shm_driver" name="ntpd_shm" respawn="true" respawn_delay="10" clear_params="true" output="screen">
+		<param name="shm_unit" value="2" />
+		<remap from="~/time_ref" to="/mavros/time_reference" />
+	</node>
+</launch>
