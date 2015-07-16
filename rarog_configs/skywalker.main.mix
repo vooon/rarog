@@ -1,0 +1,46 @@
+Mixer for Rarog UAV
+===================
+
+Rarog uses Skywalker airframe.
+
+
+Aileron mixer
+-------------
+
+Channels 1, 2 used for aileron.
+
+M: 1
+O:       10000   10000      0 -10000  10000
+S: 0 0  -10000  -10000      0 -10000  10000
+
+M: 1
+O:       10000   10000      0 -10000  10000
+S: 0 0  -10000  -10000      0 -10000  10000
+
+
+Elevator mixer
+--------------
+
+M: 1
+O:       10000   10000      0 -10000  10000
+S: 0 1  -10000  -10000      0 -10000  10000
+
+
+Rudder mixer
+------------
+
+M: 1
+O:       10000   10000      0 -10000  10000
+S: 0 2  -10000  -10000      0 -10000  10000
+
+
+Motor speed mixer
+-----------------
+Two scalers total (output, thrust).
+
+This mixer generates a full-range output (-1 to 1) from an input in the (0 - 1)
+range.  Inputs below zero are treated as zero.
+
+M: 1
+O:      10000  10000      0 -10000  10000
+S: 0 3      0  20000 -10000 -10000  10000
