@@ -15,8 +15,6 @@
 
   <depend>mavros</depend>
   <depend>ntpd_driver</depend>
-  <!-- until we use Ubuntu 14.04 we need that package -->
-  <depend>robot_upstart</depend>
 
   <!-- The export tag contains other, unspecified, tags -->
   <export>
