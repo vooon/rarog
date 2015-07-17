@@ -1,0 +1,7 @@
+<launch>
+  <!-- robot startup script -->
+  <param name="robot_name" value="rarog" />
+
+  <include file="$(find rarog_bringup)/launch/mavros.launch" />
+  <include file="$(find rarog_bringup)/launch/ntpd_driver.launch" />
+</launch>
