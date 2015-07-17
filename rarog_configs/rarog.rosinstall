@@ -1,2 +1,3 @@
 - git: {local-name: rarog, uri: 'https://github.com/vooon/rarog.git'}
 - git: {local-name: mavros, uri: 'https://github.com/mavlink/mavros.git'}
+- git: {local-name: ntpd_driver, uri: 'https://github.com/vooon/ntpd_driver.git'}
