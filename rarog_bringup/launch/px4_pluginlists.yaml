@@ -9,4 +9,5 @@ plugin_whitelist:
 - local_position
 - global_position
 - vfr_hud
+- rc_io
 - ftp
