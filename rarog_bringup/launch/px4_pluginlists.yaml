@@ -1,10 +1,12 @@
-plugin_blacklist:
-# common
-- safety_area
-# extras
-- image_pub
-- vibration
-- distance_sensor
+plugin_blacklist: []
 
-plugin_whitelist: []
-#- 'sys_*'
+plugin_whitelist:
+- 'sys_*'
+- command
+- param
+- waypoint
+- imu_pub
+- local_position
+- global_position
+- vfr_hud
+- ftp
