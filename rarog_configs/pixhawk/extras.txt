@@ -1,4 +1,4 @@
 
 // additional streams for SYS_COMPANION
-mavlink stream -d /dev/ttyS2 -s RC_CHANNELS_RAW -r 5
+mavlink stream -d /dev/ttyS2 -s RC_CHANNELS -r 5
 mavlink stream -d /dev/ttyS2 -s SERVO_OUTPUT_RAW_0 -r 20
