@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>rarog_description</name>
+  <version>0.0.0</version>
+  <description>The rarog_description package</description>
+
+  <maintainer email="vooon341@gmail.com">Vladimir Ermakov</maintainer>
+  <author email="vooon341@gmail.com">Vladimir Ermakov</author>
+
+  <license>BSD</license>
+
+  <!-- <url type="website">http://wiki.ros.org/rarog_bringup</url> -->
+
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <depend>xacro</depend>
+  <depend>urdf</depend>
+
+  <!-- The export tag contains other, unspecified, tags -->
+  <export>
+  </export>
+  <!-- vim:set et ts=2 sw=2 -->
+</package>
