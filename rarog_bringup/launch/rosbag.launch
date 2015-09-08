@@ -1,4 +1,4 @@
 <launch>
 	<!-- start recording of all topics with system startup -->
-	<node pkg="rosbag" type="record" name="rosbag" args="-a" />
+	<!--<node pkg="rosbag" type="record" name="rosbag" args="-a" />-->
 </launch>
