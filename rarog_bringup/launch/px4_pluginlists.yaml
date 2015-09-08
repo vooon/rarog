@@ -11,3 +11,4 @@ plugin_whitelist:
 - vfr_hud
 - rc_io
 - ftp
+- manual_control
