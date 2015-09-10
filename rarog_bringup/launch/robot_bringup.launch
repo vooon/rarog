@@ -4,5 +4,5 @@
 
   <include file="$(find rarog_bringup)/launch/mavros.launch" />
   <include file="$(find rarog_bringup)/launch/ntpd_driver.launch" />
-  <include file="$(find rarog_bringup)/launch/rosbag.launch" />
+  <include file="$(find rarog_bringup)/launch/event_launcher.launch" />
 </launch>

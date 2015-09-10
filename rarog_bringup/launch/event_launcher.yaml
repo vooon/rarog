@@ -1,0 +1,10 @@
+# event_launcher rules
+# vim:set ts=2 sw=2 et:
+
+rosbag_stop:
+  service: rosbag_stop
+
+rosbag_armed:
+  event: armed, disarmed, rosbag_stop
+  action: run, stop, stop
+  shell: rosrun rosbag record -a -x '/mavlink/.*' --lz4
