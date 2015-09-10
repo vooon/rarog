@@ -64,8 +64,8 @@ local_position:
   frame_id: "fcu"
   tf:
     send: true
-    frame_id: "local_origin"
-    child_frame_id: "fcu"
+    frame_id: "map" # if i understood correctly, /map is our local_origin, which not changes over time
+    child_frame_id: "base_link" # i'd prefer /fcu, but anyway estimation error is larger than /fcu-/base_link
 
 # param
 # None, used for FCU params
