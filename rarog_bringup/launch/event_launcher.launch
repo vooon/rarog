@@ -1,0 +1,6 @@
+<launch>
+	<!-- start recording of all topics with system startup -->
+	<node pkg="mavros" type="event_launcher" name="event_launcher" args="" output="screen">
+		<rosparam command="load" file="$(find rarog_bringup)/launch/event_launcher.yaml" />
+	</node>
+</launch>

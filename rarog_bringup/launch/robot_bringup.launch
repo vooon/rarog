@@ -1,8 +1,8 @@
 <launch>
   <!-- robot startup script -->
-  <param name="robot_name" value="rarog" />
+  <include file="$(find rarog_bringup)/launch/robot_description.launch" />
 
   <include file="$(find rarog_bringup)/launch/mavros.launch" />
   <include file="$(find rarog_bringup)/launch/ntpd_driver.launch" />
-  <include file="$(find rarog_bringup)/launch/rosbag.launch" />
+  <include file="$(find rarog_bringup)/launch/event_launcher.launch" />
 </launch>

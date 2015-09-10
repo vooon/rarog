@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
 <package format="2">
-  <name>rarog_bringup</name>
+  <name>rarog_description</name>
   <version>0.0.0</version>
-  <description>The rarog_bringup package</description>
+  <description>The rarog_description package</description>
 
   <maintainer email="vooon341@gmail.com">Vladimir Ermakov</maintainer>
   <author email="vooon341@gmail.com">Vladimir Ermakov</author>
@@ -13,9 +13,8 @@
 
   <buildtool_depend>catkin</buildtool_depend>
 
-  <depend>mavros</depend>
-  <depend>ntpd_driver</depend>
-  <depend>rarog_description</depend>
+  <depend>xacro</depend>
+  <depend>urdf</depend>
 
   <!-- The export tag contains other, unspecified, tags -->
   <export>

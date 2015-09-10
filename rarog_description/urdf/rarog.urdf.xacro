@@ -1,0 +1,51 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro"
+  name="rarog">
+
+  <xacro:property name="pi" value="3.141592653589793" />
+
+  <link name="base_link">
+    <!-- Robot base link
+         TODO: Ensure that it connected to CoG
+         -->
+    <!-- TODO <inertial>
+      <mass value="2.0" />
+      <origin xyz="0 0 0" />
+      <inertia ixx="0.01152" ixy="0.0" ixz="0.0" iyy="0.01152" iyz="0.0" izz="0.0218" />
+    </inertial> -->
+
+    <visual>
+      <origin xyz="0 0 -0.13" rpy="${pi} 0 0" />
+      <geometry>
+        <!-- XXX TODO Rarog uses Skywalker V6 1900, need to find right model -->
+        <mesh filename="package://rarog_description/meshes/skywalker_2013.dae"/>
+      </geometry>
+      <material name="red"> <!-- GOES FASTA! -->
+        <color rgba=".8 0 0 1" />
+      </material>
+    </visual>
+  </link>
+
+  <link name="fcu">
+    <!-- FCU frame (mavros uses this link for most topics) -->
+    <visual>
+      <geometry>
+        <box size=".085 .052 .02" />
+      </geometry>
+      <material name="dark-grey">
+        <color rgba=".2 .2 .2 1" />
+      </material>
+    </visual>
+  </link>
+
+  <joint name="base_to_fcu" type="fixed">
+    <parent link="base_link" />
+    <child link="fcu" />
+    <!-- FCU located under wing, on symmetry line,
+         +5 cm X, -3 cm Y from CoG (wing lower plane)
+         -->
+    <origin xyz="0.05 0 -0.03" rpy="0 0 0" />
+  </joint>
+
+  <!-- vim: set ts=2 sw=2 et : -->
+</robot>
