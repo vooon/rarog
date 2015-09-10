@@ -1,10 +1,14 @@
 # event_launcher rules
 # vim:set ts=2 sw=2 et:
 
+# for debugging rosbag rules that one useful
 rosbag_stop:
   service: rosbag_stop
 
+rosbag_start:
+  service: rosbag_start
+
 rosbag_armed:
-  event: armed, disarmed, rosbag_stop
-  action: run, stop, stop
+  event: armed, disarmed, rosbag_start, rosbag_stop
+  action: run, stop, run, stop
   shell: rosrun rosbag record -a -x '/mavlink/.*' --lz4
