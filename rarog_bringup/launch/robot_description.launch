@@ -1,7 +1,13 @@
 <?xml version="1.0"?>
 <launch>
-  <param name="robot_name" value="rarog" />
-  <param name="robot_description" command="xacro --inorder $(find rarog_description)/urdf/rarog.urdf.xacro" />
-  <!-- <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher" /> -->
-  <node name="robot_state_publisher" pkg="robot_state_publisher" type="state_publisher" />
+	<arg name="pi" value="3.141592653589793" />
+
+	<param name="robot_name" value="rarog" />
+	<param name="robot_description" command="xacro --inorder $(find rarog_description)/urdf/rarog.urdf.xacro" />
+
+	<!-- <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher" /> -->
+	<!-- SEGFAULT on armhf <node name="robot_state_publisher" pkg="robot_state_publisher" type="state_publisher" /> -->
+
+	<!-- hand-made transformations, please check rarog.urdf.xacro -->
+	<node pkg="tf2_ros" type="static_transform_publisher" name="joint_fixed_base_to_fcu" args="0.05 0 -0.03 0 0 0 base_link fcu" />
 </launch>
