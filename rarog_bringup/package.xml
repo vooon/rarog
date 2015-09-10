@@ -15,6 +15,7 @@
 
   <depend>mavros</depend>
   <depend>ntpd_driver</depend>
+  <depend>rarog_description</depend>
 
   <!-- The export tag contains other, unspecified, tags -->
   <export>
