@@ -4,3 +4,5 @@
 - git: {local-name: robot_state_publisher, uri: 'https://github.com/clearpathrobotics/robot_state_publisher.git',
     version: tf2-static}
 - git: {local-name: robot_model, uri: 'https://github.com/ros/robot_model.git', version: indigo-devel}
+- git: {local-name: geometry_experimental, uri: 'https://github.com/ros/geometry_experimental.git',
+    version: jade-devel}
