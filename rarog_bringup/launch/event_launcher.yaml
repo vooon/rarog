@@ -12,3 +12,11 @@ rosbag_armed:
   event: armed, disarmed, rosbag_start, rosbag_stop
   action: run, stop, run, stop
   shell: rosrun rosbag record -a -x '/mavlink/.*' --lz4
+
+shutdown_machine:
+  service: obc_shutdown
+
+shutdown:
+  event: shutdown_machine
+  action: run
+  shell: sudo -n shutdown now
