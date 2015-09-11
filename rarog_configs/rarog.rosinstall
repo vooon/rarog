@@ -1,6 +1,6 @@
 - git: {local-name: rarog, uri: 'https://github.com/vooon/rarog.git'}
 - git: {local-name: mavros, uri: 'https://github.com/mavlink/mavros.git'}
 - git: {local-name: ntpd_driver, uri: 'https://github.com/vooon/ntpd_driver.git'}
-- git: {local-name: robot_state_publisher, uri: 'https://github.com/ros/robot_state_publisher.git',
-    version: jade-devel}
+- git: {local-name: robot_state_publisher, uri: 'https://github.com/clearpathrobotics/robot_state_publisher.git',
+    version: tf2-static}
 - git: {local-name: robot_model, uri: 'https://github.com/ros/robot_model.git', version: indigo-devel}
