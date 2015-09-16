@@ -65,7 +65,12 @@
     <origin xyz="0.05 0 -0.03" rpy="0 0 0" />
   </joint>
 
-  <xacro:macro name="aileron" params="link *material *origin">
+  <xacro:macro name="aileron_servo_limit">
+      <!-- Lets say 30 deg, servo: 1.5 kg*cm (6 volt), 60 deg in 0.10 sec -->
+      <limit lower="${radians(-30)}" upper="${radians(30)}" effort="${1.5 * kgcm_to_nm}" velocity="${radians(60. / 0.10)}" />
+  </xacro:macro>
+
+  <xacro:macro name="aileron" params="link *material *origin *mimic">
     <link name="${link}">
       <visual>
         <geometry>
@@ -82,26 +87,41 @@
       <child link="${link}" />
       <xacro:insert_block name="origin" />
       <axis xyz="0 1 0" />
-      <!-- Lets say 30 deg, servo: 1.5 kg*cm (6 volt), 60 deg in 0.10 sec -->
-      <limit lower="${radians(-30)}" upper="${radians(30)}" effort="${1.5 * kgcm_to_nm}" velocity="${radians(60. / 0.10)}" />
+      <xacro:aileron_servo_limit />
+      <xacro:insert_block name="mimic" />
     </joint>
   </xacro:macro>
 
   <xacro:if value="${add_control_surfaces}">
-    <!-- <joint name="aileron_link" /> -->
+    <!-- conventional ailerons controlled by one axis -->
+    <link name="aileron_link" />
+    <joint name="base_to_aileron" type="revolute">
+      <parent link="base_link" />
+      <child link="aileron_link" />
+      <xacro:aileron_servo_limit />
+    </joint>
+
     <!-- aileron location: 51 cm Y to 6-cm side, -5 cm on X -->
+    <!-- TODO check mimic tags -->
     <xacro:aileron link="aileron_left">
       <material name="red">
         <color rgba=".9 0 0 1" />
       </material>
       <origin xyz="-0.05 ${.51 + .245/2} .02" rpy="0 0 0" />
+      <mimic joint="base_to_aileron" multiplier="-1" />
     </xacro:aileron>
     <xacro:aileron link="aileron_right">
       <material name="green">
         <color rgba="0 .9 0 1" />
       </material>
       <origin xyz="-0.05 ${-(.51 + .245/2)} .02" rpy="0 0 0" />
+      <mimic joint="base_to_aileron" multiplier="1" />
     </xacro:aileron>
+
+    <joint name="elevator_link">
+      <visual>
+      </visual>
+    </joint>
   </xacro:if>
 
   <!-- vim: set ts=2 sw=2 et : -->
