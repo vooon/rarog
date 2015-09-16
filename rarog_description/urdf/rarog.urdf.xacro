@@ -1,8 +1,26 @@
-<?xml version="1.0"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro"
   name="rarog">
 
-  <xacro:property name="pi" value="3.141592653589793" />
+  <!--
+    RAROG UAV
+    =========
+
+    It is my very own drone for reserch navigation planning and filming.
+    Maybe that package may help you to define your UAV.
+
+    Airframe: Skywalker V6 1900
+    FCU: Pixhawk with PX4 firmware
+    OBC: Raspberry Pi 2 with Ubuntu 14.04 armhf
+    Weight: ~2 kg
+
+    ~~~~ Vladimir Ermakov <vooon341@gmail.com>
+       -->
+  <!-- NOTE: xacro dont care about encoding, non ascii cause an error -->
+
+  <!-- in Jade math.pi predefined -->
+  <xacro:property name="add_control_surfaces" value="true" />
+  <xacro:property name="kgcm_to_nm" value="0.0980665" />
 
   <link name="base_link">
     <!-- Robot base link
@@ -46,6 +64,45 @@
          -->
     <origin xyz="0.05 0 -0.03" rpy="0 0 0" />
   </joint>
+
+  <xacro:macro name="aileron" params="link *material *origin">
+    <link name="${link}">
+      <visual>
+        <geometry>
+          <!-- Aileron trapeze: 6 - 24.5 - 5 cm -->
+          <box size=".055 .245 .005" />
+        </geometry>
+        <xacro:insert_block name="material" />
+        <origin xyz="${-0.055/2} 0 0" rpy="0 0 0" />
+      </visual>
+    </link>
+
+    <joint name="base_to_${link}" type="revolute">
+      <parent link="base_link" />
+      <child link="${link}" />
+      <xacro:insert_block name="origin" />
+      <axis xyz="0 1 0" />
+      <!-- Lets say 30 deg, servo: 1.5 kg*cm (6 volt), 60 deg in 0.10 sec -->
+      <limit lower="${radians(-30)}" upper="${radians(30)}" effort="${1.5 * kgcm_to_nm}" velocity="${radians(60. / 0.10)}" />
+    </joint>
+  </xacro:macro>
+
+  <xacro:if value="${add_control_surfaces}">
+    <!-- <joint name="aileron_link" /> -->
+    <!-- aileron location: 51 cm Y to 6-cm side, -5 cm on X -->
+    <xacro:aileron link="aileron_left">
+      <material name="red">
+        <color rgba=".9 0 0 1" />
+      </material>
+      <origin xyz="-0.05 ${.51 + .245/2} .02" rpy="0 0 0" />
+    </xacro:aileron>
+    <xacro:aileron link="aileron_right">
+      <material name="green">
+        <color rgba="0 .9 0 1" />
+      </material>
+      <origin xyz="-0.05 ${-(.51 + .245/2)} .02" rpy="0 0 0" />
+    </xacro:aileron>
+  </xacro:if>
 
   <!-- vim: set ts=2 sw=2 et : -->
 </robot>
