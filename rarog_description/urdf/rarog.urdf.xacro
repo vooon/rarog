@@ -23,9 +23,7 @@
   <xacro:property name="kgcm_to_nm" value="0.0980665" />
 
   <link name="base_link">
-    <!-- Robot base link
-         TODO: Ensure that it connected to CoG
-         -->
+    <!-- Robot base link: near CoG -->
     <!-- TODO <inertial>
       <mass value="2.0" />
       <origin xyz="0 0 0" />
@@ -60,12 +58,12 @@
     <parent link="base_link" />
     <child link="fcu" />
     <!-- FCU located under wing, on symmetry line,
-         +5 cm X, -3 cm Y from CoG (wing lower plane)
+         +5 cm X, -3 cm Y from base_link
          -->
     <origin xyz="0.05 0 -0.03" rpy="0 0 0" />
   </joint>
 
-  <xacro:macro name="aileron_servo_limit">
+  <xacro:macro name="common_servo_limit">
       <!-- Lets say 30 deg, servo: 1.5 kg*cm (6 volt), 60 deg in 0.10 sec -->
       <limit lower="${radians(-30)}" upper="${radians(30)}" effort="${1.5 * kgcm_to_nm}" velocity="${radians(60. / 0.10)}" />
   </xacro:macro>
@@ -82,46 +80,82 @@
       </visual>
     </link>
 
-    <joint name="base_to_${link}" type="revolute">
+    <joint name="${link}" type="revolute">
       <parent link="base_link" />
       <child link="${link}" />
       <xacro:insert_block name="origin" />
       <axis xyz="0 1 0" />
-      <xacro:aileron_servo_limit />
+      <xacro:common_servo_limit />
       <xacro:insert_block name="mimic" />
     </joint>
   </xacro:macro>
 
   <xacro:if value="${add_control_surfaces}">
+
     <!-- conventional ailerons controlled by one axis -->
     <link name="aileron_link" />
-    <joint name="base_to_aileron" type="revolute">
+    <joint name="aileron" type="revolute">
       <parent link="base_link" />
       <child link="aileron_link" />
-      <xacro:aileron_servo_limit />
+      <xacro:common_servo_limit />
     </joint>
 
     <!-- aileron location: 51 cm Y to 6-cm side, -5 cm on X -->
-    <!-- TODO check mimic tags -->
     <xacro:aileron link="aileron_left">
       <material name="red">
         <color rgba=".9 0 0 1" />
       </material>
       <origin xyz="-0.05 ${.51 + .245/2} .02" rpy="0 0 0" />
-      <mimic joint="base_to_aileron" multiplier="-1" />
+      <mimic joint="aileron" multiplier="-1" />
     </xacro:aileron>
     <xacro:aileron link="aileron_right">
       <material name="green">
         <color rgba="0 .9 0 1" />
       </material>
       <origin xyz="-0.05 ${-(.51 + .245/2)} .02" rpy="0 0 0" />
-      <mimic joint="base_to_aileron" multiplier="1" />
+      <mimic joint="aileron" multiplier="1" />
     </xacro:aileron>
 
-    <joint name="elevator_link">
+    <!-- Elevator (T-tail) -->
+    <link name="elevator_link">
       <visual>
+        <geometry>
+          <box size=".035 .54 .005" />
+        </geometry>
+        <material name="blue">
+          <color rgba="0 0 .9 1" />
+        </material>
+        <origin xyz="${-0.035/2} 0 0" rpy="0 0 0" />
       </visual>
+    </link>
+    <joint name="elevator" type="revolute">
+      <parent link="base_link" />
+      <child link="elevator_link" />
+      <origin xyz="-0.75 0 .07" rpy="0 0 0" />
+      <axis xyz="0 1 0" />
+      <xacro:common_servo_limit />
     </joint>
+
+    <!-- Rudder (T-tail) -->
+    <link name="rudder_link">
+      <visual>
+        <geometry>
+          <box size=".07 .005 .165" />
+        </geometry>
+        <material name="yellow">
+          <color rgba=".9 .9 0 1" />
+        </material>
+        <origin xyz="${-0.07/2} 0 0" rpy="0 0 0" />
+      </visual>
+    </link>
+    <joint name="rudder" type="revolute">
+      <parent link="base_link" />
+      <child link="rudder_link" />
+      <origin xyz="-0.71 0 -0.05" rpy="0 0 0" />
+      <axis xyz="0 0 1" />
+      <xacro:common_servo_limit />
+    </joint>
+
   </xacro:if>
 
   <!-- vim: set ts=2 sw=2 et : -->
