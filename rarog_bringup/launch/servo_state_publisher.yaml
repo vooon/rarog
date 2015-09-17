@@ -1,0 +1,19 @@
+# RAROG servo_state_publisher, should be in sync with skywalker.main.mix
+# vim:set ts=2 sw=2 et:
+
+# XXX TODO: check min/max/trim/rev rc params
+
+aileron_left:
+  rc_channel: 1
+
+aileron_right:
+  rc_channel: 2
+
+elevator:
+  rc_channel: 3
+
+rudder:
+  rc_channel: 4
+
+#throttle:
+#  rc_channel: 5
