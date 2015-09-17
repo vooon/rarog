@@ -5,9 +5,14 @@
 	<param name="robot_name" value="rarog" />
 	<param name="robot_description" command="xacro --inorder $(find rarog_description)/urdf/rarog.urdf.xacro" />
 
-	<!-- <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher" /> -->
 	<node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher" respawn="true" respawn_delay="10">
 		<param name="publish_frequency" value="10.0" />
 		<param name="use_tf_static" value="true" /> <!-- clearpath robotics already done this -->
+	</node>
+
+	<!-- <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher" /> -->
+	<node pkg="mavros_extras" type="servo_state_publisher" name="servo_state_publisher" respawn="true" respawn_delay="10">
+		<remap from="rc_out" to="/mavros/rc/out" />
+		<rosparam command="load" file="$(find rarog_bringup)/launch/servo_state_publisher.yaml" />
 	</node>
 </launch>
