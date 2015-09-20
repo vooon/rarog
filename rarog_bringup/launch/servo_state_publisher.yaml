@@ -1,16 +1,18 @@
 # RAROG servo_state_publisher, should be in sync with skywalker.main.mix
 # vim:set ts=2 sw=2 et:
 
-# XXX TODO: check min/max/trim/rev rc params
+# PX4 OUT: min: 1000, max: 2000, trim: 1500.
 
 aileron_left:
   rc_channel: 1
 
 aileron_right:
   rc_channel: 2
+  rc_rev: true
 
 elevator:
   rc_channel: 3
+  rc_rev: true
 
 rudder:
   rc_channel: 4
