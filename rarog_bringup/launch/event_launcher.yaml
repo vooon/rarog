@@ -11,6 +11,7 @@ rosbag_start:
 rosbag_armed:
   event: armed, disarmed, rosbag_start, rosbag_stop
   action: run, stop, run, stop
+  logfile: $HOME/.ros/rosbag-record.log
   shell: rosrun rosbag record -a -x '/mavlink/.*' --lz4
 
 shutdown_machine:
