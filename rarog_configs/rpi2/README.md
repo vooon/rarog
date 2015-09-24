@@ -19,4 +19,8 @@ sudo cp 90-ttyAMA0.rules /etc/udev/rules/
 
 # 4. rpi2 bootloader config (optional)
 sudo cp config.txt /boot/firmware/
+
+# 5. networking
+sudo cp interfaces /etc/network
+ln select_wifi_mode.sh ~/bin
 ```

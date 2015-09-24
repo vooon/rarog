@@ -1,0 +1,25 @@
+# interfaces(5) file used by ifup(8) and ifdown(8)
+# Include files from /etc/network/interfaces.d:
+source-directory /etc/network/interfaces.d
+
+# The loopback network interface
+auto lo
+iface lo inet loopback
+
+# The primary network interface
+allow-hotplug eth0
+iface eth0 inet dhcp
+
+auto wlan0
+mapping wlan0
+	script /home/sky/bin/select_wifi_mode.sh
+	map CLIENT	wlan0-client
+	map AP		wlan0-ap
+
+iface wlan0-client inet dhcp
+	wpa-conf /etc/wpa_supplicant/wpa_supplicant.conf
+
+iface wlan0-ap inet static
+	hostapd /etc/hostapd/hostapd-phy0.conf
+	address 192.168.80.1
+	netmask 255.255.255.0
