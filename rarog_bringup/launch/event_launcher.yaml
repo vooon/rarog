@@ -21,3 +21,8 @@ shutdown:
   event: shutdown_machine
   action: run
   shell: sudo -n shutdown now
+
+sync:
+  event: disarmed
+  action: run
+  shell: sync

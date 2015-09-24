@@ -5,10 +5,10 @@
 
 aileron_left:
   rc_channel: 1
+  rc_rev: true
 
 aileron_right:
   rc_channel: 2
-  rc_rev: true
 
 elevator:
   rc_channel: 3
