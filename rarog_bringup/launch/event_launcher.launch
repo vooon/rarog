@@ -1,6 +1,6 @@
 <launch>
 	<!-- event_launcher watch on arming and other events and launch/stop nodes -->
-	<node pkg="mavros" type="event_launcher" name="event_launcher" respawn="true" respawn_delay="10.0" clear_params="true" output="log">
+	<node pkg="mavros" type="event_launcher" name="event_launcher" respawn="true" respawn_delay="10.0" clear_params="true" output="screen">
 		<rosparam command="load" file="$(find rarog_bringup)/launch/event_launcher.yaml" />
 	</node>
 </launch>
