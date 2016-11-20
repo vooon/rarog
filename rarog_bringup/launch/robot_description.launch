@@ -3,7 +3,7 @@
 	<!-- robot description (URDF) processing -->
 
 	<param name="robot_name" value="rarog" />
-	<param name="robot_description" command="xacro --inorder $(find rarog_description)/urdf/rarog.urdf.xacro" />
+	<param name="robot_description" command="$(find xacro)/xacro --inorder $(find rarog_description)/urdf/rarog.urdf.xacro" />
 
 	<node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher" respawn="true" respawn_delay="10" output="screen">
 		<param name="publish_frequency" value="10.0" />
